@@ -1,0 +1,86 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Faked Accounts</h1>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: left">
+                                <p><strong>Criteria for Detecting Fake Account: </strong> <br> followers_count=0, friends_count<=20, <br> favourites_count<10
+                                    <br> have no descriptions </p>
+                            </div>
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Fake Accounts</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+
+                        {# Start - All User Roles Tables #}
+                        <div class="table-responsive shadow rounded" style="padding: 10px">
+
+                            <p class="text-center text-danger">{{ delete_error }}</p>
+                            <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                              <thead >
+                                <tr>
+                                  <th class="font-weight-lighter">#</th>
+                                  <th class="font-weight-lighter">Photo</th>
+                                  <th class="font-weight-lighter">Name</th>
+                                  <th class="font-weight-lighter">Username</th>
+                                  <th class="font-weight-lighter"># Following</th>
+                                  <th class="font-weight-lighter"># Friends</th>
+                                  <th class="font-weight-lighter"># Post</th>
+                                  <th class="font-weight-lighter">Account Verification</th>
+                                  <th class="font-weight-lighter">Profile Link</th>
+                                  <th class="font-weight-lighter">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% load static %}
+                              {% for user in fake_users %}
+
+                                  <tr>
+                                    <td class="font-weight-lighter">{{ forloop.counter }}</td>
+                                    <td class="font-weight-lighter" ><img src="{{ user.profile_image_url_https }}" alt="" style="border-radius: 100%"></td>
+                                    <td class="font-weight-lighter">{{ user.name }}</td>
+                                    <td class="font-weight-lighter">{{ user.username }}</td>
+                                    <td class="font-weight-lighter">{{ user.followers_count }}</td>
+                                    <td class="font-weight-lighter">{{ user.friends_count }}</td>
+                                    <td class="font-weight-lighter">{{ user.statuses_count }}</td>
+                                    <td class="font-weight-lighter">
+                                        {% if user.verification == 0 %}
+                                            Not Verified
+                                            {% else %}
+                                            Verified
+                                        {% endif %}
+                                    </td>
+                                    <td class="font-weight-lighter"><a href="https://twitter.com/{{user.username}}" target="_blank">Profile</a></td>
+                                    <td>
+                                        <a href="/twitter_users/view" class="btn btn-info btn-user btn-sm rounded" data-toggle="tooltip" title="View" data-placement="top"><i class="far fa-check-square"></i> TCA Profile</a>
+                                    </td>
+                                  </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                        {# End - All User Roles Tables #}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

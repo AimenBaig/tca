@@ -1,0 +1,5 @@
+.navbar .navbar-nav>a:hover,
+.navbar .navbar-nav>a:focus {
+  /*color: #ffffff;*/
+  background-color: lightblue;
+}

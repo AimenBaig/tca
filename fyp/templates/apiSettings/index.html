@@ -1,0 +1,70 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">API Settings</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: left">
+                                <a href="/api_settings/add" class="btn btn-primary btn-user btn-block">Add New API</a>
+                            </div>
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">API Settings</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+                        <br><br><br>
+                        {# Start - API Setting cards #}
+                        <div class="row">
+                            <p style="color: red; text-align: center;">{{ delete_error }}</p>
+                            {% for api in setting %}
+                            <div class="card col-sm-5 shadow mr-4">
+                                <div class="card-body">
+                                    {% if api.setting_status == 'default' %}
+                                    <div>
+                                        <a href="#" class="btn btn-primary disabled" style="float: left"><i class="fas fa-tag"></i> Default Setting</a>
+                                    </div>
+                                    <br><br><hr>
+                                    {% endif %}
+                                    <div>
+                                        <p class="small"><strong>API Key: <br></strong>{{ api.api_key }}</p>
+                                        <p class="small"><strong>API Secret: <br></strong>{{ api.api_key_secret }}</p>
+                                        <p class="small"><strong>Access Token: <br></strong>{{ api.access_token }}</p>
+                                        <p class="small"><strong>Access Secret: <br></strong>{{ api.access_token_secret }}</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <a href="/api_settings/edit/{{ api.api_id }}" class="btn btn-info btn-user" style="float: left"><i class="far fa-edit"></i> Edit</a>
+                                        {% if api.setting_status != 'default' %}
+                                            <a href="/api_settings/delete/{{ api.api_id }}" class="btn btn-danger btn-user" style="float: right"><i class="far fa-trash-alt"></i> Delete</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+
+
+                        {# End -  API Settings Card #}
+                    </div>
+                </div>
+            </div>
+          </div>
+{% endblock %}

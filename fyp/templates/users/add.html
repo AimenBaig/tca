@@ -1,0 +1,94 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">User Role Managements</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/users">Sys Users</a></li>
+                                    <li class="breadcrumb-item active">Add New User</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+                        <br>
+                        {# Start - Add New User Role #}
+                        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4">
+                            <h5 style="text-align: center">Add New User</h5>
+                            <form class="user" method="Post" action="/users/add" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.password }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.phone_no }}
+                                </div>
+                                <div class="form-group">
+                                    <select name="HQ_id" id="id_HQ_id" class="form-control form-control-user">
+                                        <option value="">Select Head Quarter</option>
+                                        {% for headquarters in list_hq%}
+                                            <option value="{{ headquarters.HQ_id }}">{{ headquarters.hq_name }}</option>
+                                        {% endfor %}
+                                    </select>
+{#                                    {{ form.HQ_id }}#}
+                                </div>
+                                <div class="form-group">
+                                    <select name="role_id" id="id_role_id" class="form-control form-control-user">
+                                        <option value="">Select User Role</option>
+                                        {% for user_roles in list_roles%}
+                                            <option value="{{ user_roles.role_id }}">{{ user_roles.role }}</option>
+                                        {% endfor %}
+                                    </select>
+{#                                {{ form.role_id }}#}
+                                </div>
+                                <div class="form-group">
+                                    <select name="designation_id" id="id_designation_id" class="form-control form-control-user">
+                                        <option value="">Select Designation</option>
+                                        {% for designations in list_designation%}
+                                            <option value="{{ designations.designation_id }}">{{ designations.designation }}</option>
+                                        {% endfor %}
+                                    </select>
+{#                                    {{ form.designation_id }}#}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.photo }}
+                                </div>
+
+{#                                <div>#}
+                                    <button type="submit" class="btn btn-primary btn-user" style="width: 100%;">
+                                        <i class="far fa-save"></i> Save
+                                    </button>
+{#                                </div>#}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

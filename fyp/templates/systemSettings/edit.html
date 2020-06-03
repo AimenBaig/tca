@@ -1,0 +1,62 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">System Settings</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/system_setting">System Settings</a></li>
+                                    <li class="breadcrumb-item active">Add New API</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+                        <br>
+                        {# Start - Add New User Role #}
+                        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4">
+                            <h5 style="text-align: center">Edit System Setting</h5>
+                            <form class="user" method="Post" action="/system_setting/edit">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="system_name" value="{{ setting.system_name }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="system_logo" value="{{ setting.system_logo }}">
+                                </div>
+                                <div class="form-group">
+                                    <select name="system_lang" id="" class="form-control-user form-control">
+                                        <option value="" disabled>Select Language</option>
+                                        <option value="English">English</option>
+                                        <option value="Urdu">Urdu</option>
+                                    </select>
+                                </div>
+
+{#                                <div>#}
+                                    <button type="submit" class="btn btn-primary btn-user" style="width: 100%;">
+                                        <i class="far fa-save"></i> Update
+                                    </button>
+{#                                </div>#}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

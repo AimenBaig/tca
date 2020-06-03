@@ -1,0 +1,69 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Crime Categorization Analysis</h1>
+{#            <a href="/analysis" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-refresh fa-sm text-white-50"></i> Refresh</a>#}
+{#          <a href="/analysis_view" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="refresh_tweets"><i class="fas fa-refresh fa-sm text-white-50"></i> Refresh</a>#}
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Category Analysis</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+
+                        {# Start - All User Roles Tables #}
+                        <div class="table-responsive shadow rounded" style="padding: 10px">
+                            <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                              <thead >
+                                <tr>
+                                  <th class="font-weight-lighter">#</th>
+                                  <th class="font-weight-lighter">Photo</th>
+                                  <th class="font-weight-lighter">Username</th>
+                                  <th class="font-weight-lighter"># Rape</th>
+                                  <th class="font-weight-lighter"># Killing/Murder</th>
+                                  <th class="font-weight-lighter"># Abusing</th>
+                                  <th class="font-weight-lighter">TCA Profile</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tweets_analysis_tbl">
+                              {% for analysis in all_analysis %}
+                                  <tr>
+                                      <td>{{ forloop.counter }}</td>
+                                      <td>{{ analysis.username }}</td>
+                                      <td>{{ analysis.tweet_text }}</td>
+                                      <td><a href="{{ analysis.tweet_link }}" target="_blank">Tweet Link</a></td>
+                                      <td>{{ analysis.polarity }}</td>
+                                      <td>{{ analysis.subjectivity }}</td>
+                                      <td>{{ analysis.analysis_status }}</td>
+                                      <td><a href="{{ analysis.profile_url }}" target="_blank">Profile Link</a></td>
+                                      <td></td>
+                                  </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                        {# End - All User Roles Tables #}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

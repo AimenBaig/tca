@@ -1,0 +1,81 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">System User Managements</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: left">
+                                <a href="/users/add" class="btn btn-primary btn-user btn-block">Add New User</a>
+                            </div>
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Sys Users</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+
+                        {# Start - All User Roles Tables #}
+                        <div class="table-responsive shadow rounded" style="padding: 10px">
+                            <p class="text-center text-danger">{{ delete_error }}</p>
+                            <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                              <thead >
+                                <tr>
+                                  <th class="font-weight-lighter">#</th>
+                                  <th class="font-weight-lighter">Photo</th>
+                                  <th class="font-weight-lighter">Name</th>
+                                  <th class="font-weight-lighter">Email</th>
+                                  <th class="font-weight-lighter">Role</th>
+                                  <th class="font-weight-lighter">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% load static %}
+                              {% for user in users %}
+                                  <tr>
+                                    <td class="font-weight-lighter">{{ forloop.counter }}</td>
+                                    <td class="font-weight-lighter"><img src="{% static 'img/profile/' %}{{ user.photo }}" alt=""></td>
+                                    <td class="font-weight-lighter">{{ user.first_name }} {{ user.last_name }}</td>
+                                    <td class="font-weight-lighter">{{ user.email }}</td>
+                                    <td class="font-weight-lighter">{{ user.role }}</td>
+                                    <td>
+                                        {% if request.session.role_id == 1 %}
+                                            {% if user.role_id == 1 %}
+                                                <a href="/users/view/{{ user.uid }}" class="btn btn-info btn-user btn-sm rounded" data-toggle="tooltip" title="View" data-placement="top"><i class="far fa-check-square"></i></a>
+                                                <a href="/users/delete/{{ user.uid }}" class="btn btn-danger btn-user btn-sm rounded" data-toggle="tooltip" title="Delete" data-placement="top"><i class="far fa-trash-alt"></i></a>
+                                            {% else %}
+                                            <a href="/users/view/{{ user.uid }}" class="btn btn-info btn-user btn-sm rounded" data-toggle="tooltip" title="View" data-placement="top"><i class="far fa-check-square"></i></a>
+                                            <a href="/users/edit/{{ user.uid }}" class="btn btn-warning btn-user btn-sm rounded" data-toggle="tooltip" title="Edit" data-placement="top"><i class="far fa-edit"></i></a>
+                                            <a href="/users/delete/{{ user.uid }}" class="btn btn-danger btn-user btn-sm rounded" data-toggle="tooltip" title="Delete" data-placement="top"><i class="far fa-trash-alt"></i></a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="/user_role/view/" class="btn btn-info btn-user btn-sm rounded" data-toggle="tooltip" title="View" data-placement="top"><i class="far fa-check-square"></i></a>
+                                        {% endif %}
+                                    </td>
+                                  </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                        {# End - All User Roles Tables #}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">User's Detail Profile</h1>
+            <a href="/twitter_users" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Back</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-md-12 col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card shadow">
+                                <div class="card-header with-border bg-primary text-white">
+                                        <h6 class="">Basic Info</h6>
+                                </div>
+                                <div class="box-body no-padding">
+                                    <div class="p-2">
+                                        <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="" style="height: 193px;border-radius: 100%;">
+                                    </div>
+                                    <div class="p-2">
+                                        <p><strong>Name: </strong>&nbsp;&nbsp; Syed Suhaib Zia</p>
+                                        <p><strong>Username: </strong>&nbsp;&nbsp; @suhaib1</p>
+                                        <p><strong># Friends: </strong>&nbsp;&nbsp; 123</p>
+                                        <p><strong># Followers: </strong>&nbsp;&nbsp; 2,548</p>
+                                        <p><strong># Status: </strong>&nbsp;&nbsp; 225</p>
+                                        <p><strong># favourites: </strong>&nbsp;&nbsp; 147</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card shadow p-2">
+                                <ul class="nav nav-tabs" role="tablist">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" href="#crime_summary" role="tab" data-toggle="tab">Crime Summary</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#criminal_tweets" role="tab" data-toggle="tab">Criminal Tweets</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#visual_analysis" role="tab" data-toggle="tab">Visual Analysis</a>
+                                  </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                  <div role="tabpanel" class="tab-pane fade in active" id="crime_summary">
+                                      <div class="table-responsive shadow rounded" style="padding: 10px">
+                                        <p class="text-center text-danger">{{ delete_error }}</p>
+                                        <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                                          <thead >
+                                            <tr>
+                                              <th class="font-weight-lighter">#</th>
+                                              <th class="font-weight-lighter">Crime Category</th>
+                                              <th class="font-weight-lighter"># of Tweets</th>
+                                              <th class="font-weight-lighter"># of Criminal Tweets</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Rape</td>
+                                                <td>2,345</td>
+                                                <td>234</td>
+                                            </tr>
+                                          <tr>
+                                                <td>2</td>
+                                                <td>Killing/Murder</td>
+                                                <td>2,345</td>
+                                                <td>234</td>
+                                            </tr>
+                                          <tr>
+                                                <td>3</td>
+                                                <td>Abusing</td>
+                                                <td>2,345</td>
+                                                <td>234</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                                  <div role="tabpanel" class="tab-pane fade" id="criminal_tweets">
+                                      <div class="table-responsive shadow rounded" style="padding: 10px">
+                                        <p class="text-center text-danger">{{ delete_error }}</p>
+                                        <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                                          <thead >
+                                            <tr>
+                                              <th class="font-weight-lighter">#</th>
+                                              <th class="font-weight-lighter">tweet</th>
+                                              <th class="font-weight-lighter">Polarity</th>
+                                              <th class="font-weight-lighter">Subjectivity</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>sfjdkfjskfjdskfjsk</td>
+                                                <td>0.85</td>
+                                                <td>89</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                                  <div role="tabpanel" class="tab-pane fade" id="visual_analysis">
+                                    <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                      <div class="chart-bar">
+                                        <canvas id="individual_criminal_chart"></canvas>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+{% endblock %}

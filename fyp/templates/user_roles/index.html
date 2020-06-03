@@ -1,0 +1,70 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">User Role Managements</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                    <div class="card-body">
+                        {# Start - Top Button & Breadcrumb #}
+                        <div style="padding: 10px">
+                            <div style="float: left">
+                                <a href="/user_role/add" class="btn btn-primary btn-user btn-block">Add New Role</a>
+                            </div>
+                            <div style="float: right">
+                                <nav aria-label="breadcrumb" class="shadow">
+                                  <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">User Roles</li>
+                                  </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        {# End - Top Button & Breadcrumb #}
+
+                        {# Start - All User Roles Tables #}
+                        <div class="table-responsive shadow rounded" style="padding: 10px">
+                            <table class="table table-bordered font-weight-lighter rounded" id="dataTable" width="100%">
+                              <thead >
+                                <tr>
+                                  <th class="font-weight-lighter">#</th>
+                                  <th class="font-weight-lighter">User Role</th>
+                                  <th class="font-weight-lighter">Created By</th>
+                                  <th class="font-weight-lighter">Created On</th>
+                                  <th class="font-weight-lighter">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for role in roles %}
+                                  <tr>
+                                    <td class="font-weight-lighter">{{ forloop.counter }}</td>
+                                    <td class="font-weight-lighter">{{ role.role }}</td>
+                                    <td class="font-weight-lighter">{{ role.first_name }} {{ role.last_name }}</td>
+                                    <td class="font-weight-lighter">{{ role.created_at }}</td>
+                                    <td>
+                                        {% if role.role == "Admin" %}
+                                        {% else %}
+                                        <a href="/user_role/edit/{{ role.user_role_id }}" class="btn btn-info btn-user btn-sm rounded"><i class="far fa-edit"></i></a>
+                                        <a href="/user_role/delete/{{ role.user_role_id }}" class="btn btn-danger btn-user btn-sm rounded"><i class="far fa-trash-alt"></i></a>
+                                        {% endif %}
+                                    </td>
+                                  </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                        {# End - All User Roles Tables #}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+{% endblock %}

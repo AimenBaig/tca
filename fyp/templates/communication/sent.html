@@ -1,0 +1,103 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Communication Portal</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="/conversation/create" class="btn btn-primary btn-block margin-bottom" style="margin-bottom: 10px;">Compose</a>
+                            <div class="card shadow">
+                                <div class="card-header with-border bg-primary text-white">
+                                        <h6 class="">Folders</h6>
+                                </div>
+                                <div class="box-body no-padding">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a href="/conversation/index" class="nav-link">
+                                             <i class="fa fa-inbox"></i>
+                                                Conversation
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/draft" class="nav-link">
+                                             <i class="far fa-save"></i>
+                                                Drafts
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/sent" class="nav-link">
+                                             <i class="far fa-envelope"></i>
+                                                Sent
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/trash" class="nav-link">
+                                             <i class="far fa-trash-alt"></i>
+                                                Trash
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary text-white with-border">
+                                    <h6 class="card-title">Sent</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="" style="margin-bottom: 20px;">
+                                        <div class="btn-group">
+                                            <button class="btn btn-info btn-sm" data-toggle="tooltip" title="Select All" data-placement="top">
+                                                <i class="far fa-square"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete Mail" data-placement="top">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                            <button class="btn btn-primary btn-sm" data-toggle="tooltip" title="Refresh" data-placement="top">
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered font-weight-lighter" id="dataTable" width="100%" cellspacing="0">
+                                          <thead >
+                                            <tr>
+                                              <th class="font-weight-lighter">#</th>
+                                              <th class="font-weight-lighter">Status</th>
+                                              <th class="font-weight-lighter">Name</th>
+                                              <th class="font-weight-lighter">Subject</th>
+                                              <th class="font-weight-lighter">Attach</th>
+                                              <th class="font-weight-lighter">Time</th>
+                                              <th class="font-weight-lighter">Reply</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                          </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+{% endblock %}

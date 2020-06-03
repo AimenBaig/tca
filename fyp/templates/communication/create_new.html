@@ -1,0 +1,104 @@
+{% extends 'components/header.html' %}
+
+{% block content %}
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Communication Portal</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="/conversation/create" class="btn btn-primary btn-block margin-bottom" style="margin-bottom: 10px;">Compose</a>
+                            <div class="card shadow">
+                                <div class="card-header with-border bg-primary text-white">
+                                        <h6 class="">Folders</h6>
+                                </div>
+                                <div class="box-body no-padding">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a href="/conversation/index" class="nav-link">
+                                             <i class="fa fa-inbox"></i>
+                                                Conversation
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/draft" class="nav-link">
+                                             <i class="far fa-save"></i>
+                                                Drafts
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/sent" class="nav-link">
+                                             <i class="far fa-envelope"></i>
+                                                Sent
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/conversation/trash" class="nav-link">
+                                             <i class="far fa-trash-alt"></i>
+                                                Trash
+                                                <span class="label label-info pull-right" id="inbox"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card shadow">
+                                <div class="card-header bg-primary text-white with-border">
+                                    <h6 class="card-title">Compose New Conversation</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <form class="user" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <select name="uid" id="" class="form-control form-control-user rounded">
+                                                <option value="">Select User</option>
+                                                {% for user in users %}
+                                                    <option value="{{ user.uid }}">{{ user.first_name }} {{ user.last_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+{#                                          <input type="text" class="form-control form-control-user" id="" placeholder="Subject">#}
+                                            {{ form.msg_subject }}
+                                        </div>
+                                        
+                                        <div class="form-group">
+{#                                            <textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="Your Message"></textarea>#}
+                                            {{ form.message }}
+                                        </div>
+
+                                        <div>
+{#                                            <a href="" class="btn btn-primary btn-user" style="float: left">#}
+{#                                             <i class="far fa-save"></i> Draft#}
+{#                                            </a>#}
+                                            <button type="submit" class="btn btn-primary btn-user" style="float: right">
+                                                <i class="far fa-envelope"></i> Send
+                                            </button>
+                                        </div>
+
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+{% endblock %}
